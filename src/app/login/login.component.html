@@ -1,1 +1,6 @@
 <p>login works!</p>
+<form #myForm="ngForm">
+    <input type="text" name="nombre"/>
+
+    <input type="submit" id="myButton" (click)="login()"/>
+</form>
