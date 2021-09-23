@@ -1,16 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-
+import { FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
+  const myFormBuilder:FormBuilder=new FormBuilder();
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[ FormsModule ],
+      imports:[ ReactiveFormsModule ],
       declarations: [ LoginComponent]
+      /*providers:[FormBuilder]*/
     })
     .compileComponents();
   }));
@@ -25,9 +28,31 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should detect form is valid', ()=>{
+  it("equal", ()=>{
+    expect(component.num1).toEqual(component.num2);
+  });
+ /* it('should detect form is valid', ()=>{
     fixture.nativeElement.querySelector('#myButton').click();
-    //expect(component.login()).toEqual('invalid_form');
+    expect(component.login()).toEqual('invalid_form');
+  });*/
+
+  it('should validate correct user and pass',()=>{
+
+   // let nombreInput=fixture.nativeElement.querySelector('#nameId');
+
+
+
+    //const event = createNewEvent('input');
+    component.miFormulario=myFormBuilder.group({
+      email:"testValid@test.com",
+      password: 'validPass'
+    });
+
+    fixture.nativeElement.querySelector('#myButton').click();
+
+
+    expect(component.login()).toEqual('form_valid');
+
   });
 
 });

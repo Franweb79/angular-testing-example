@@ -1,6 +1,19 @@
 <p>login works!</p>
-<form #myForm="ngForm">
-    <input type="text" name="nombre"/>
+<!--<form #myForm="ngForm">
+    <input type="text" name="nombre" id="nameId"/>
 
-    <input type="submit" id="myButton" (click)="login()"/>
+    <input type="submit" id="myButton" (click)="testClick()"/>
+</form>-->
+
+<h3>Formulario de login</h3>
+<form [formGroup]="miFormulario" id="loginForm" (ngSubmit)="login()">
+  <div>
+    <label>Email:</label>
+    <input type="email" formControlName="email" >
+  </div>
+  <div>
+    <label>Password</label>
+    <input type="password" formControlName="password">
+  </div>
+  <button type="submit" id="myButton">Enviar</button>
 </form>
